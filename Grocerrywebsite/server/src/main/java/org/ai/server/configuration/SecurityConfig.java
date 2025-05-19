@@ -46,7 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/addAddress","/api/user/getAddress","/api/userDetails/","/api/notifications/reject"
                                 ).hasAnyRole("SELLER","USER","DELIVERER")
                         .requestMatchers("/api/orders/placeOrder",
-                                "/api/orders/user","/api/orders/pay","/api/orders/verify"
+                                "/api/orders/user","/api/orders/pay","/api/orders/verify","/api/ratings"
                                 ).hasAnyRole("SELLER","USER","DELIVERER")
                         //User only end points
                         .requestMatchers("/api/auth/updateRole").hasRole("USER")

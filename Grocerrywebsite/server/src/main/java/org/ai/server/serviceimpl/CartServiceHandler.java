@@ -36,11 +36,9 @@ public class CartServiceHandler implements CartService {
             user.setCartItems(new HashMap<>(updateCartRequest.getCartItems()));
 
                UserEntity user1 = userRepository.save(user);
-            System.out.println(user1);
 
 // Convert to DTO
             UserDto userDto = DtoConverter.convertUsertoUserDto(user1);
-            System.out.println(userDto);
             return Response.success("Successfully updated cart items").withUser(userDto);
 
 

@@ -129,9 +129,7 @@ const Orders = () => {
 
         {filteredOrders.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-10">
-            <p className="text-gray-500 text-lg">
-              No Orders found matching your filters
-            </p>
+            <p className="text-gray-500 text-lg">No Orders found</p>
           </div>
         ) : (
           filteredOrders.map((order, index) => (

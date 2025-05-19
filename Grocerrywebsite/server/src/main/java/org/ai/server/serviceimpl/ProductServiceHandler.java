@@ -6,6 +6,7 @@ import org.ai.server.Repository.ProductRepository;
 import org.ai.server.dto.Response;
 import org.ai.server.mapper.DtoConverter;
 import org.ai.server.model.ProductEntity;
+import org.ai.server.request.ProductRequest;
 import org.ai.server.service.CloudinaryService;
 import org.ai.server.service.ProductService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -95,11 +96,13 @@ public class ProductServiceHandler implements ProductService {
     }
 
     @Override
-    public Response changeStock(Long id, boolean stock) {
+    public Response updateProduct(Long id, ProductRequest productRequest) {
         try{
 
             ProductEntity productEntity = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product not found"));
-            productEntity.setInStock(stock);
+            productEntity.setPrice(productRequest.getPrice());
+            productEntity.setOfferPrice(productRequest.getOfferPrice());
+            productEntity.setInStock(productRequest.isStock());
            productEntity= productRepository.save(productEntity);
             return  Response.success("Products can be updated successfully").withProduct(DtoConverter.convertProducttoProductDto(productEntity));
 
@@ -128,4 +131,5 @@ public class ProductServiceHandler implements ProductService {
     public int totalProductsByCategory(String category) {
         return productRepository.findByCategory(category).size();
     }
+
 }

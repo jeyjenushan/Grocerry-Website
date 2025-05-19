@@ -1,13 +1,12 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 
 const MyOrders = () => {
-  const { currency, myOrders, fetchMyOrders } =
-    useAppContext();
+  const { currency, myOrders, fetchMyOrders, token } = useAppContext();
 
   useEffect(() => {
     fetchMyOrders();
-  }, []);
+  }, [token]);
 
   return (
     <div className="container mx-auto px-4 py-8">

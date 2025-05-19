@@ -1,4 +1,3 @@
-import React from "react";
 import { categories } from "../greencart_assets/assets";
 import { useAppContext } from "../context/AppContext";
 

@@ -57,6 +57,8 @@ public class DtoConverter {
         productDto.setOfferPrice(product.getOfferPrice());
         productDto.setCreatedAt(product.getCreatedAt());
         productDto.setUpdatedAt(product.getUpdatedAt());
+        productDto.setAverageRating(product.getAverageRating());
+        productDto.setRatingCount(product.getRatingCount());
 
         return productDto;
 
@@ -188,6 +190,20 @@ public static DeliveryBoyOrderStatsDto convertDEliveryBoyOrderStatsDto(DeliveryB
         return dto;
 
 
+}
+public static ProductRatingDto convertProductRatingEntityToProductRatingDto(ProductRatingEntity productRatingEntity){
+        ProductRatingDto productRatingDto=new ProductRatingDto();
+        productRatingDto.setRating(productRatingEntity.getRating());
+        productRatingDto.setId(productRatingEntity.getId());
+        productRatingDto.setUserId(productRatingEntity.getUser().getId());
+        productRatingDto.setRating(productRatingEntity.getRating());
+        productRatingDto.setProductId(productRatingDto.getProductId());
+        return productRatingDto;
+
+}
+
+public static List<ProductRatingDto> convertProductRatingListToProductRatingDtoList(List<ProductRatingEntity> productRatingEntityList){
+        return productRatingEntityList.stream().map(DtoConverter::convertProductRatingEntityToProductRatingDto).collect(Collectors.toList());
 }
 
 

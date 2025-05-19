@@ -59,6 +59,10 @@ public class UserEntity implements UserDetails {
     @JsonIgnore
     private List<NotificationEntity> notifications = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<ProductRatingEntity> givenRatings;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

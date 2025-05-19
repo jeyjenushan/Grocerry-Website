@@ -1,5 +1,5 @@
-import React from "react";
-import { assets, footerLinks } from "../greencart_assets/assets";
+
+import {  footerLinks } from "../greencart_assets/assets";
 
 const Footer = () => {
   return (

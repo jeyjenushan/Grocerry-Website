@@ -1,6 +1,4 @@
 import {
-  PieChart as RePieChart,
-
   ResponsiveContainer,
   Tooltip,
   BarChart as ReBarChart,
@@ -8,8 +6,6 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  LineChart as ReLineChart,
-  Line,
 } from "recharts";
 
 export const BarChart = ({ data }) => {

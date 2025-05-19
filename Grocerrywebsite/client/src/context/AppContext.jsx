@@ -18,6 +18,7 @@ export const AppContextProvider = ({ children }) => {
   const [delivererOrders, setDelivererOrders] = useState([]);
   const [showUserLogin, setShowUserLogin] = useState(false);
   const [products, setProducts] = useState([]);
+  const [ratings, setRatings] = useState(null);
   // Safe localStorage parser helper
   const safeParseJSON = (item, fallback = {}) => {
     try {
@@ -79,7 +80,6 @@ export const AppContextProvider = ({ children }) => {
       console.error("Failed to update cart in localStorage:", error);
     }
   };
-
 
   //GetPendingDeliverer
   const getPendingDeliverer = async () => {
@@ -473,6 +473,28 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  //handleRate
+  const handleRate = async (rating, productId) => {
+    try {
+      const { data } = await axios.post(
+        backEndUrl + "/api/ratings",
+        { productId, rating },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (data.success) {
+        setRatings(data.productRatingDto.rating);
+        toast.success(data.message);
+      } else {
+        console.log(data.message);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      // toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchUser();
   }, [token]);
@@ -491,7 +513,6 @@ export const AppContextProvider = ({ children }) => {
           `${backEndUrl}/api/cart/updateCart`,
           { cartItems }, // Request body as second argument
           {
-            // Config object as third argument
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -580,6 +601,8 @@ export const AppContextProvider = ({ children }) => {
     setCustomer,
     updateCartItemQuantity,
     updateCartInLocalStorage,
+    handleRate,
+    ratings,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

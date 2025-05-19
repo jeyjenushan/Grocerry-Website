@@ -38,7 +38,7 @@ const NotificationsScreen: React.FC<NotificationsScreenProps> = ({ navigation })
   const [verificationCode, setVerificationCode] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const { user, API_URL, token,logout } = useAuth();
+  const {  token,logout } = useAuth();
 // Add this line
 
 const handleLogout = async () => {

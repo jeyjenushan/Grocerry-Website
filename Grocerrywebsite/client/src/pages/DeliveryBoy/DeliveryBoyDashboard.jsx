@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AppContext, useAppContext } from "../../context/AppContext";
+import  {  useEffect, useState } from "react";
+import {  useAppContext } from "../../context/AppContext";
 import { Bar, Pie } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import axios from "axios";
@@ -45,7 +45,7 @@ const DeliveryBoyDashboard = () => {
           },
         }
       );
-      console.log(data);
+  
       if (data.success) {
         const statsData = data.deliveryBoyOrderStatsDto;
         setStats({

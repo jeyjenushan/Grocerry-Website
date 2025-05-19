@@ -31,8 +31,6 @@ const Navbar = () => {
     setCustomerToken,
     customer,
     setCustomer,
-    updateCartInLocalStorage,
-    setCartItems,
   } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -46,7 +44,7 @@ const Navbar = () => {
       setIsInitialized(true);
     };
     initializeAuth();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (searchQuery.length > 0) {

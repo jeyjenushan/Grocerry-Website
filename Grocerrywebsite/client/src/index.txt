@@ -1,3 +1,0 @@
-npm i react-router-dom react-hot-toast install dependencies
-
-prebuilt ui component section

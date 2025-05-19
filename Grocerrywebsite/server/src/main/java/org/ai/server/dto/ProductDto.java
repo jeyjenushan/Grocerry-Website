@@ -21,5 +21,7 @@ public class ProductDto {
     private Boolean inStock = false;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private double averageRating;
+    private int ratingCount;
 
 }

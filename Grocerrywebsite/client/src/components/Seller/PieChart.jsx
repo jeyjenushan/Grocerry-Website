@@ -5,13 +5,6 @@ import {
   ResponsiveContainer,
   Tooltip,
   Legend,
-  BarChart as ReBarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  LineChart as ReLineChart,
-  Line,
 } from "recharts";
 
 export const PieChart = ({ data }) => {

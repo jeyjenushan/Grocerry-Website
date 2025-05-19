@@ -1,12 +1,8 @@
 package org.ai.server.dto;
-
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.ai.server.enumPackage.DeliveryNotification;
-import org.ai.server.enumPackage.NotificationType;
-import org.ai.server.model.UserEntity;
 
 import java.time.LocalDateTime;
 

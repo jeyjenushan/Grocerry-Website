@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import  {  useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-import { AppContext, useAppContext } from "../context/AppContext";
+import {  useAppContext } from "../context/AppContext";
 import { assets } from "../greencart_assets/assets";
 const SlideLeft = (delay) => {
   return {

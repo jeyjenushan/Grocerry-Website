@@ -26,6 +26,7 @@ public class Response {
     private DeliverOrderDto deliverOrderDto;
     private DeliveryBoyOrderStatsDto deliveryBoyOrderStatsDto;
     private DashboardDto dashboardDto;
+    private ProductRatingDto productRatingDto;
     private List<DeliverOrderDto>deliverOrderDtoList;
     private DeliverNotificationDto deliverNotificationDto;
     private List<DeliverNotificationDto>deliverNotificationDtoList;
@@ -36,6 +37,7 @@ public class Response {
     private List<OrderDto>orderDtoList;
     private List<AddressDto>addressDtoList;
     private List<PendingDeliverDto>pendingDeliverDtoList;
+    private List<ProductRatingDto>productRatingDtoList;
 
 
     //optional
@@ -45,6 +47,8 @@ public class Response {
     private int amount;
     private int count;
     private boolean rejected;
+    private double averageRating;
+    private int ratingCount;
 
 
     // Success factory method
@@ -211,6 +215,25 @@ public class Response {
         this.rejected = rejected;
         return this;
      }
+     public Response withProductRatingDto(ProductRatingDto productRatingDto) {
+        this.productRatingDto = productRatingDto;
+         this.productRatingDtoList = null;
+         return this;
+     }
+     public Response withProductRatingDtos(List<ProductRatingDto> productRatingDtoList) {
+        this.productRatingDtoList = productRatingDtoList;
+        this.productRatingDto = null;
+        return this;
+     }
+  public Response withAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+        return this;
+  }
+    public Response withRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
+        return this;
+    }
+
 
 
 

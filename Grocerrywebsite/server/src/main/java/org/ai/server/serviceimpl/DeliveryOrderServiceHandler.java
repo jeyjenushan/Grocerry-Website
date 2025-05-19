@@ -329,7 +329,7 @@ public class DeliveryOrderServiceHandler implements DeliveryOrderService {
 
             // Get pending orders (ACCEPTED or PICKED status)
             List<DeliveryOrderEntity> pendingOrders = allOrders.stream()
-                    .filter(order -> order.getStatus() == DeliveryStatus.DELIVERED)
+                    .filter(order -> order.getStatus() == DeliveryStatus.PENDING)
                     .collect(Collectors.toList());
 
             // Calculate statistics

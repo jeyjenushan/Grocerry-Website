@@ -27,7 +27,6 @@ import java.util.Objects;
 @AllArgsConstructor
 public class DelivererServiceHandler implements DelivererService {
 
-    private static final String DELIVERER_NOT_FOUND = "Deliverer not found with email: ";
     private static final String NOTIFICATION_NOT_FOUND = "Notification not found with ID: ";
     private static final String DATABASE_ERROR = "Database operation failed";
     private static final String EMAIL_ERROR = "Failed to send email notification";

@@ -1,4 +1,3 @@
-import React from "react";
 import { assets, features } from "../greencart_assets/assets";
 import { motion } from "framer-motion";
 

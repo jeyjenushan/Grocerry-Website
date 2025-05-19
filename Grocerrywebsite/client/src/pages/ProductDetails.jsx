@@ -3,13 +3,26 @@ import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { assets } from "../greencart_assets/assets";
 import ProductCard from "../components/ProductCard";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const ProductDetails = () => {
-  const { products, navigate, currency, addToCart } = useAppContext();
+  const {
+    products,
+    navigate,
+    currency,
+    addToCart,
+    handleRate,
+    backEndUrl,
+    token,
+    fetchProducts,
+  } = useAppContext();
   const { id } = useParams();
+  const producId = id;
   const product = products.find((product) => product.id == id);
   const [thumbnail, setThumbnail] = useState();
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [ratings, setRatings] = useState(0);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -22,8 +35,34 @@ const ProductDetails = () => {
   }, [products]);
 
   useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const { data } = await axios.get(backEndUrl + "/api/ratings/" + id, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (data.success) {
+          setRatings(data.ratingCount);
+        } else {
+          console.log(data.message);
+          toast.error(data.message);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    };
+    fetchRatings();
+    fetchProducts();
+  }, [product]);
+
+  useEffect(() => {
     setThumbnail(product?.image[0] ? product.image[0] : null);
   }, [product]);
+
+  const handleRatingSubmit = async (ratingValue) => {
+    await handleRate(ratingValue, producId);
+  };
 
   return (
     product && (
@@ -64,10 +103,13 @@ const ProductDetails = () => {
                 .map((_, i) => (
                   <img
                     className="md:w-4 w-3.5"
-                    src={i < 4 ? assets.star_icon : assets.star_dull_icon}
+                    src={
+                      i < Math.floor(product.averageRating)
+                        ? assets.star_icon
+                        : assets.star_dull_icon
+                    }
                   />
                 ))}
-              <p className="text-base ml-2">(4)</p>
             </div>
 
             <div className="mt-6">
@@ -84,6 +126,32 @@ const ProductDetails = () => {
 
             <p className="text-base font-medium mt-6">About Product</p>
             <p className="ml-4 text-gray-500/70">{product.description}</p>
+
+            <div className=" flex items-center gap-2 py-3 mt-10">
+              <p className="text-xl font-bold">Rate this Product:</p>
+              <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    onClick={() => handleRatingSubmit(star)}
+                    className="text-2xl"
+                    aria-label={`Rate ${star} star`}
+                  >
+                    <img
+                      src={
+                        star <= ratings
+                          ? assets.star_icon
+                          : assets.star_dull_icon
+                      }
+                      alt={
+                        star <= (ratings || 0) ? "Filled star" : "Empty star"
+                      }
+                      className="w-6 h-6"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="flex items-center mt-10 gap-4 text-base">
               <button

@@ -8,6 +8,7 @@ import org.ai.server.dto.UserDto;
 import org.ai.server.enumPackage.Role;
 import org.ai.server.model.ProductEntity;
 import org.ai.server.model.UserEntity;
+import org.ai.server.request.ProductRequest;
 import org.ai.server.service.ProductService;
 import org.ai.server.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -54,11 +55,12 @@ public class ProductController {
 
     }
    @PutMapping("/update/{productId}")
-    public ResponseEntity<Response> updateProduct(@PathVariable  Long productId,@RequestParam  boolean stock) {
+    public ResponseEntity<Response> updateProduct(@PathVariable  Long productId,@RequestBody ProductRequest productRequest) {
        System.out.println(productId);
-        Response response =productService.changeStock(productId,stock);
+        Response response =productService.updateProduct(productId,productRequest);
         return ResponseEntity.status(response.getStatusCode()).body(response);
 
     }
+
 
 }

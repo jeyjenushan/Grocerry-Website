@@ -140,7 +140,7 @@ const Register = () => {
       }
     } catch (error) {
       toast.error(
-        "Registration Failed. Please check your details and try again."
+        "Registration Failed. Please check your image size it can be large size."
       );
       console.log(error.message);
     } finally {

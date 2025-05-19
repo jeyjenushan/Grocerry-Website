@@ -1,12 +1,6 @@
 import {
-  PieChart as RePieChart,
-  Pie,
-  Cell,
   ResponsiveContainer,
   Tooltip,
-  Legend,
-  BarChart as ReBarChart,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
